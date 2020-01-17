@@ -24,7 +24,7 @@
 
 ## Basic Concept
 
-Use the features of Open CV to detect the number of Car license plates of a car and compare the images to the test set to see how accurate they are.
+Use the features of Open CV to detect the number of license plates of a car and compare the images to the test set to see how accurate they are.
 
 ###  Our Goal
 
@@ -46,7 +46,7 @@ Use the features of Open CV to detect the number of Car license plates of a car 
 
 **recogizing Car number plates**: It is detected through matching the previously extracted license plate image using the `BFmatcher with KNN Match` of the Open CV.
 
-<img src="C:\Users\bruce0809\Desktop\matcher.jpg" style="zoom: 67%;" />
+<img src="https://github.com/dannylee93/Images/blob/master/Image%20Analysis%20A.I/matcher.jpg?raw=true" style="zoom:80%;" />
 
 
 
