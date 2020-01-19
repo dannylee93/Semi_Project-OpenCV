@@ -1,32 +1,16 @@
-import os
-import cv2
+#-*- coding:utf-8 -*-
 import numpy as np
-import matplotlib.pyplot as plt
-import pytesseract
-from PIL import Image, ImageDraw, ImageFont
-import copy
-import random
-import collections
-from threading import Thread, Lock
-import csv
-
-
-
+import argparse
+import imutils
+import cv2
+import os
+from PIL import Image 
 
 
 x_list = []
 y_list = []
 w_list = []
 h_list = []
-
-
-
-BLUR = 21
-CANNY_THRESH_1 = 5
-CANNY_THRESH_2 = 10
-MASK_DILATE_ITER = 20
-MASK_ERODE_ITER = 20
-MASK_COLOR = (0.0,0.0,1.0) # In BGR format
 
 
 raw_path = './data/best/'
@@ -45,36 +29,35 @@ if not os.path.exists(crop_path):
 
 for i in raw_list : 
     img_path = os.path.join(raw_path, i)
-    #print (i)
     img_orig = cv2.imread(img_path)
- #   img_orig =  img_orig.astype('uint8')
+    img_orig_copy = img_orig.copy()
     gray = cv2.cvtColor(img_orig, cv2.COLOR_BGR2GRAY)
     img_blur = cv2.GaussianBlur(gray, ksize=(5, 5), sigmaX=0)
     edge = cv2.Canny(img_blur, 50, 120)
     cv2.imwrite(os.path.join(save_path, i), edge)
     _, contours, _ = cv2.findContours(edge.copy(), cv2.RETR_LIST, cv2.CHAIN_APPROX_SIMPLE)
     contours = sorted(contours, key = cv2.contourArea, reverse = True)[:30]
-    NumberPlateCnt = 0
     new_contours = []
     for c in contours :
+        c = c.astype("float")
+        c = c.astype("int")
         peri = cv2.arcLength(c, True)
         approx = cv2.approxPolyDP(c, 0.02 * peri, True)
-                
+        
         if len(approx) == 4:  # Select the contour with 4 corners           
-            NumberPlateCnt = approx #This is our approx Number Plate Contour
+            cntcnt = approx 
+            cv2.drawContours(img_orig, [cntcnt], -1, (0,255,0), 3)
             new_contours.append(c)
-            cv2.drawContours(img_orig, [NumberPlateCnt], -1, (0,255,0), 3)
             cv2.imwrite(os.path.join(contour_path, i), img_orig)
+
             break
 
     for item in new_contours :
-        x, y, w, h = cv2.boundingRect(c)
-        print (type(x))
-        with open('xywh.csv', 'w') as df:
-            write = csv.writer(df, delimiter = ',')
-            write.writerow(x)
-                
- 
+        x, y, w, h = cv2.boundingRect(item)
+        print (x, y, w, h)
+        ROI = img_orig_copy[y:y+h, x:x+w]
+        cv2.imwrite(os.path.join(crop_path, i), ROI)
+
         
         
 '''
