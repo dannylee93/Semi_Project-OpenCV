@@ -13,12 +13,12 @@
 <img src="https://wac-cdn.atlassian.com/dam/jcr:0869c664-5bc1-4bf2-bef0-12f3814b3187/01.svg?cdnVersion=485" style="zoom:67%;" />
 
 - `Master branch` :  **@dannylee93** 이동규
-- `branch A(brchA)` : **@WinterBlue16**  이경희
-- `branch B(brchB)` : **@dannylee93** 이동규
-- `branch C(brchC)` : **@imooncoco**  이가은
-- `branch D(brchD)` : **@siraasony** 이소은
-- `branch E(brchE)` : **@HanSangKook**  한상국
-- `branch E(brchE)` : **@tkxkd0159**  이재승
+  - `branch A(brchA)` : **@WinterBlue16**  이경희
+  - `branch B(brchB)` : **@dannylee93** 이동규
+  - `branch C(brchC)` : **@imooncoco**  이가은
+  - `branch D(brchD)` : **@siraasony** 이소은
+  - `branch E(brchE)` : **@HanSangKook**  한상국
+  - `branch F(brchF)` : **@tkxkd0159**  이재승
 
 
 
